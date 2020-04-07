@@ -1,6 +1,6 @@
 ##Create a temporary wiev with data
 
-
+´´´
 drop view if exists categories;
 create temp view categories as ( 
 	  select 1 as id, array['VW','BMW'] 			  as cats  
@@ -18,3 +18,4 @@ select *, 'BMW' = any(cats) 		   as result from categories order by id; -- 1,3
 select *, cats && array['Kia','Volvo'] as result from categories order by id; -- 2,3,4
 select *, cats @> array['Kia','Volvo'] as result from categories order by id; -- 2,3
 select *, cats <@ array['Kia','Volvo'] as result from categories order by id; -- 2,4,5
+´´´
