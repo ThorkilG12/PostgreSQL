@@ -1,6 +1,7 @@
 
 ##Create a temporary wiev with data
 
+
 ´´´
 	drop view if exists categories;
 	create temp view categories as ( 
