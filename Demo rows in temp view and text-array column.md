@@ -20,3 +20,6 @@
 	select *, cats @> array['Kia','Volvo'] as result from categories order by id; -- 2,3
 	select *, cats <@ array['Kia','Volvo'] as result from categories order by id; -- 2,4,5
 ´´´
+
+
+http://sqlfiddle.com/#!17/f5de26/4
