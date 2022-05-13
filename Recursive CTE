@@ -1,3 +1,10 @@
+/* Here is a smal organisation. Top manager is Employee number 11. Emp 11 has no Boss 
+  There are 3 Bosses and three low-level Floor Workers
+     11
+     22
+ 33---+---34 
+       44--+--45
+*/
 DROP TABLE if EXISTS OrgHier;
 CREATE TEMP TABLE OrgHier AS (
 SELECT * FROM (
