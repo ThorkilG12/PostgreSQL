@@ -26,7 +26,9 @@ CREATE TABLE public.t_tabletest (
 );
 ```
 The get_app_user() is a function the helps me getting the name of the logged in user. 
-It is described [here](https://github.com/ThorkilG12/Frontend-Backend-Communication/tree/main/Get%20the%20logged%20in%20users%20id%20into%20the%20database)
+It is described [here](https://github.com/ThorkilG12/Frontend-Backend-Communication/tree/main/Get%20the%20logged%20in%20users%20id%20into%20the%20database) and has nothing to do with the subject in this text.
+
+Let's do the main function. The one that is called when relevant columns is changed.
 ```SQL
 CREATE OR REPLACE FUNCTION public.t_tabletest_update_1()
   	RETURNS trigger LANGUAGE plpgsql AS $function$ BEGIN 
@@ -44,7 +46,10 @@ END; $function$;
 The `NOW() function` returns same timestamp within the function above. It is the same transaction.
 
 Notice that when updating a row, the current values are copied to a new row, and the new values updates the original row.
-Since **between** comparison includes both from and to, it's important that we add one micro-second.
+
+Also notice that since **between** comparison in SQL includes both from and to, it's important that we add one micro-second.
+
+And we need a trigger:
 ```SQL
 create trigger t_tabletest_trigger_1 after
 	update of 
@@ -70,7 +75,7 @@ update t_tabletest
 ![image](https://user-images.githubusercontent.com/12120277/172167661-90cc627f-abce-4b5c-98bb-bb8393d7285b.png)
 Let's **delete** a row. (In the table security no-one are able to delete.) You only can make a row passive.
 ```SQL
--- delete a product
+-- delete a product (product 1 in this demonstration)
 update t_tabletest
   set active = false,
   active_to = now()
@@ -82,7 +87,7 @@ update t_tabletest
   where product_id = 2 and active; 
 ```
 ![image](https://user-images.githubusercontent.com/12120277/172168495-297f0488-9625-4479-9f92-6fc7e9510c02.png)
-Now let's see the current rows and the historic point in time at 15:11:
+Now let's see the current rows and the rows from the **historic point in time* at 15:11
 ```SQL
 select * from t_tabletest
 where now() between active_from and active_to
@@ -94,6 +99,7 @@ where '2022-06-06 15:11:00'::timestamptz between active_from and active_to
 ```
 ![image](https://user-images.githubusercontent.com/12120277/172169469-951842ae-a25f-4f93-9337-245279c9ce59.png)
 ![image](https://user-images.githubusercontent.com/12120277/172169734-06bfb130-d792-4c45-8221-489dbae98cdb.png)
+
 Let's wrap up by creating a view to the users. A view that hides all this history-stuff...  😎
 ```SQL
 drop view if exists tabletest;
@@ -106,4 +112,8 @@ create view tabletest AS
   from t_tabletest
   where active
   order by product;
-```  
+```
+![image](https://user-images.githubusercontent.com/12120277/172180273-8646a101-ac8a-46d4-b885-cfb41931edc8.png)
+
+Please leave a comment. I really would appreciate that.
+
