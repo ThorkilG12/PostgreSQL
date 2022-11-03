@@ -1,10 +1,12 @@
-/* Here is a smal organisation. Top manager is Employee number 11. Emp 11 has no Boss 
-  There are 3 Bosses and three low-level Floor Workers
+Here is a smal organisation. Top manager is Employee number 11. Emp 11 has no Boss 
+There are 3 Bosses (11,22,34) and three low-level Floor Workers (33,44,45)
+```
      11
      22
  33---+---34 
        44--+--45
-*/
+```
+```SQL
 DROP TABLE if EXISTS OrgHier;
 CREATE TEMP TABLE OrgHier AS (
 SELECT * FROM (
@@ -19,7 +21,9 @@ SELECT * FROM (
 SELECT * 
   FROM OrgHier
 ;
--- Lets see how all 6 persons fits into the Boss-chain
+```
+Lets see how all 6 persons fits into the Boss-chain
+```SQL
 WITH RECURSIVE MyOrg (Emp, Boss, Lvl, List) AS (
 SELECT Emp, Boss, 1, CAST('#' AS VARCHAR(100)) AS List
   FROM OrgHier
@@ -52,3 +56,5 @@ SELECT Boss, Emp, Lvl
   FROM BossList
 ORDER BY Boss, Emp, Lvl
 ;
+```
+--oOo--
