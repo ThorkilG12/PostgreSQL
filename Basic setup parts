@@ -1,4 +1,4 @@
-When PostgreSQL is installed on at windows server, there are some tricks you can use.
+###When PostgreSQL is installed on at windows server, there are some tricks you can use.###
 
 In order for Apache to connect to PostgreSQL, Apache needs info about IP, Port, Database, User and password.
 On top of that, one can also supply info about Client Encoding, and set some Attributes.
@@ -12,9 +12,7 @@ PGPORT=<PostgreSQL Port>
 PGUSER=<PostgreSQL user>
 
 The file pgpass.conf has this line:
-<ip>:<port>:*:<PostgreSQL user>:<password>
 
-
-
+´<ip>:<port>:*:<PostgreSQL user>:<password>`
 
 My Apache is setup to use a dedicated user on my server.
