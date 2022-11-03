@@ -1,4 +1,4 @@
-Here is a smal organisation. Top manager is Employee number 11. Emp 11 has no Boss 
+Here is a smal organisation. Top manager is Employee number 11. Emp 11 has no Boss.  
 There are 3 Bosses (11,22,34) and three low-level Floor Workers (33,44,45)
 ```
      11
@@ -22,7 +22,7 @@ SELECT *
   FROM OrgHier
 ;
 ```
-Lets see how all 6 persons fits into the Boss-chain
+Lets see how all 6 persons fits into the Boss-chain.  
 ```SQL
 WITH RECURSIVE MyOrg (Emp, Boss, Lvl, List) AS (
 SELECT Emp, Boss, 1, CAST('#' AS VARCHAR(100)) AS List
