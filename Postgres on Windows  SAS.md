@@ -9,7 +9,7 @@ The properties for the service "SAS [Config-Lev1] Web Infrastructure Platform Da
 Open a CMD and change to 
 CD C:\Program Files\SASHome\SASWebInfrastructurePlatformDataServer\9.4\bin\
 run psql -p 9432 -U dbmsowner -d postgres
-entar password
+enter password
 
 
 ```
